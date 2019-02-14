@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class IndexController {
     @RequestMapping("/index")
     public String index(ModelMap map){
-        System.out.println("1");
         return "index";
     }
 }
