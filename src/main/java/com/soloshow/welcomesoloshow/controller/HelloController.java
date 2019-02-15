@@ -21,9 +21,6 @@ import java.util.*;
 @RestController
 public class HelloController {
 
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
-    Date date1 ;
-
     @RequestMapping(value = "/list",method = RequestMethod.GET)
     @Scheduled(cron = "0 0 10 * * WED")
     @Async
@@ -33,11 +30,6 @@ public class HelloController {
         list.add("aa");
         list.add("aa1");
         list.add("aa2");
-        date1 = new Date();
-        System.out.println(date1);
-        // Userinfo u = new Userinfo();
-        // u.setDatetime(new Date());
-        // System.out.println(u);
         return list;
     }
 
