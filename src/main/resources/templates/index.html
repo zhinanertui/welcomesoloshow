@@ -3,8 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <link href="dist/video-js.css" rel="stylesheet">
+
+    <!-- If you'd like to support IE8 -->
+    <script src="dist/ie8/videojs-ie8.min.js"></script>
+    <script src="dist/video.js"></script>
+    <script type="text/javascript">
+        videojs.options.flash.swf = "dist/video-js.swf";
+    </script>
 </head>
 <body>
-<img src="image/lolnamei.jpg">
+<video id="my-video" class="video-js" controls preload="auto" width="640" height="264"
+       poster="image/lolnamei.jpg" data-setup="{}">
+    <source src="rtmp://47.107.243.117:1935/live/123" type='rtmp/flv'>
+    <!-- <source src="rtmp://youIp:1935/live/" type='rtmp/flv'>  -->
 </body>
+<script>
+
+</script>
 </html>
