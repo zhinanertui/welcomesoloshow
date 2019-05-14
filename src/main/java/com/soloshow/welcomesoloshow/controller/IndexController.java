@@ -5,8 +5,8 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 /**
- * @Author xsw
- * @Date 2018/11/29
+ * @author  xsw
+ * @since  2018/11/29
  */
 @Controller
 public class IndexController {

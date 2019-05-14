@@ -7,8 +7,8 @@ import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
 /**
- * @Author xsw
- * @Date 2018/12/04
+ * @author  xsw
+ * @since  2018/12/04
  */
 @Slf4j
 @Component

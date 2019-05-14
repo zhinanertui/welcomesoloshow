@@ -6,8 +6,8 @@ import org.springframework.format.annotation.DateTimeFormat;
 import java.util.Date;
 
 /**
- * @Author xsw
- * @Date 2018/12/04
+ * @author xsw
+ * @since  2018/12/04
  */
 @Data
 public class Userinfo {
