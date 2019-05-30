@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link href="dist/video-js.css" rel="stylesheet">
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.0.0.min.js"></script>
+</head>
+<body>
+<div align="center">
+    <video id="my-video" class="video-js" controls preload="auto" width="1200" height="600"
+           poster="image/lolnamei.jpg" data-setup="{}" src="/video/5c039ba1-37e1-4b04-ba84-ef53078e279d1558919266371.mp4">
+    </video>
+</div>
+
+</body>
+<script>
+    let video = $('.video-js')[0];
+    video.addEventListener("timeupdate",function () {
+        let time = Math.floor(video.currentTime);
+        console.log(time);
+},true);
+
+
+</script>
+</html>

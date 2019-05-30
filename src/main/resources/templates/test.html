@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>初音未来</title>
+    <link rel="shortcut icon" href="/image/初音未来.ico"/>
+</head>
+<script src="https://code.jquery.com/jquery-3.0.0.min.js"></script>
+<body>
+<!--<img src="/image/lolnamei.jpg">-->
+<!--<img src="/image/初音未来.png">-->
+<!--<a href="/image/1112.docx"></a>-->
+<!--<a href="https://v.qq.com/" target="myframe">腾讯视频</a>-->
+
+<!--<iframe class="myFrame" width="100%"  height="700" frameborder="0" scrolling="no"></iframe>-->
+<a href="/pdf/web/viewer.html?file=https://windyeel.oss-cn-shanghai.aliyuncs.com/huli.pdf">测试</a>
+</body>
+<script>
+    let a = "https://windyeel.oss-cn-shanghai.aliyuncs.com/asd.docx";
+    if(a.endsWith('.pdf')) {
+        $('.myFrame').attr("src", a);
+    }else {
+        $('.myFrame').attr("src", "https://onedrive.live.com/op/view.aspx?src="+a);
+        // $('.myFrame').attr("src", "https://view.officeapps.live.com/op/view.aspx?src="+a);
+    }
+</script>
+</html>
