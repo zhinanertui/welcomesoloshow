@@ -8,6 +8,7 @@ import org.springframework.web.multipart.MultipartFile;
 import javax.servlet.annotation.MultipartConfig;
 import java.io.File;
 import java.io.IOException;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
@@ -25,7 +26,8 @@ public class IndexController {
     }
 
     @RequestMapping("/video")
-    public String videoHtml() {
+    public String videoHtml(ModelMap map) {
+        map.put("state", 1);
         return "video";
     }
 

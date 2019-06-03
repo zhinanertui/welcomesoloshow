@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
@@ -9,19 +9,167 @@
 </head>
 <body>
 <div align="center">
-    <video id="my-video" class="video-js" controls preload="auto" width="1200" height="600"
-           poster="image/lolnamei.jpg" data-setup="{}" src="/video/5c039ba1-37e1-4b04-ba84-ef53078e279d1558919266371.mp4">
-    </video>
-</div>
+    <button onclick="add()">添加</button>
+    <button onclick="update()">修改</button>
+    <div>
+        <label>
+            <input type="radio" name="answer1" value="A"> A
+        </label>
+        <label>
+            <input type="radio" name="answer1" value="B"> B
+        </label>
+        <label>
+            <input type="radio" name="answer1" value="C"> C
+        </label>
+        <label>
+            <input type="radio" name="answer1" value="D"> D
+        </label>
+    </div>
+    <div>
+        <label>
+            <input type="radio" name="answer2" value="A"> A
+        </label>
+        <label>
+            <input type="radio" name="answer2" value="B"> B
+        </label>
+        <label>
+            <input type="radio" name="answer2" value="C"> C
+        </label>
+        <label>
+            <input type="radio" name="answer2" value="D"> D
+        </label>
+    </div>
 
+    <div>
+        <label>
+            <input type="checkbox" name="answer3" value="A"> A
+        </label>
+        <label>
+            <input type="checkbox" name="answer3" value="B"> B
+        </label>
+        <label>
+            <input type="checkbox" name="answer3" value="C"> C
+        </label>
+        <label>
+            <input type="checkbox" name="answer3" value="D"> D
+        </label>
+    </div>
+    <div>
+        <label>
+            <input type="checkbox" name="answer4" value="A"> A
+        </label>
+        <label>
+            <input type="checkbox" name="answer4" value="B"> B
+        </label>
+        <label>
+            <input type="checkbox" name="answer4" value="C"> C
+        </label>
+        <label>
+            <input type="checkbox" name="answer4" value="D"> D
+        </label>
+    </div>
+
+    <!--<video id="my-video" class="video-js" controls preload="auto" width="1200" height="600"-->
+    <!--poster="image/lolnamei.jpg" data-setup="{}"-->
+    <!--src="/video/5c039ba1-37e1-4b04-ba84-ef53078e279d1558919266371.mp4">-->
+    <!--</video>-->
+</div>
 </body>
 <script>
-    let video = $('.video-js')[0];
-    video.addEventListener("timeupdate",function () {
-        let time = Math.floor(video.currentTime);
-        console.log(time);
-},true);
 
+    /**
+     * 这个试卷已经被考过了
+     * 状态1
+     * @type {IDBFactory | *}
+     */
+    window.indexedDB = window.indexedDB || window.mozIndexedDB || window.webkitIndexedDB || window.msIndexedDB;
+    if (!window.indexedDB) {
+        console.log("你的浏览器不支持IndexedDB");
+    }
 
+    $("input[type='radio']").click(function () {
+        let index = this.name.substring(6);
+        console.log(this);
+        let value = this.value;
+        update(index, value);
+    });
+
+    $("input[type='checkbox']").click(function () {
+        let values = $("input[name='" + this.name + "']:checked").map(function (index, elem) {
+            return $(elem).val();
+        }).get().join(',');
+        let index = this.name.substring(6);
+        update(index, values);
+    });
+    let status = [[${state}]];
+    let db;
+    let request = window.indexedDB.open("paperDB", 1);
+    request.onsuccess = function (event) {
+        console.log("成功打开DB");
+        db = event.target.result;
+        if (status === 0) {
+            add();
+        } else {
+            readAll();
+        }
+    };
+    request.onupgradeneeded = function (event) {
+        console.log("Upgrading");
+        db = event.target.result;
+        if (db.objectStoreNames.contains('paper')) {
+            console.log("有数据库")
+        }
+        if (!db.objectStoreNames.contains('paper')) {
+            let objectStore = db.createObjectStore('paper', {keyPath: 'id'});
+        }
+    };
+
+    function add() {
+        if (!db) {
+            return;
+        }
+        request = db.transaction(['paper'], 'readwrite');
+        let objectStore = request.objectStore('paper');
+        for (let i = 1; i <= 100; i++) {
+            objectStore.add({id: i.toString(), value: null});
+        }
+    }
+
+    function readAll() {
+        let objectStore = db.transaction('paper').objectStore('paper');
+        objectStore.openCursor().onsuccess = function (event) {
+            let result = event.target.result;
+            if (result) {
+                let inputName = 'answer' + result.key;
+                $("input[name='" + inputName + "'][type='radio']").each(function () {
+                    let str = $(this).val();
+                    if (str === result.value.value) {
+                        $(this).attr("checked", true);
+                    }
+                });
+                $("input[name='" + inputName + "'][type='checkbox']").each(function () {
+                    let str = result.value.value.split(',');
+                    for (let i = 0; i < str.length; i++) {
+                        if ($(this).val() === str[i]) {
+                            $(this).attr("checked", true);
+                        }
+                    }
+                });
+                result.continue();
+            } else {
+
+            }
+        };
+    }
+
+    function update(index, value) {
+        request = db.transaction(['paper'], 'readwrite')
+            .objectStore('paper')
+            .put({id: index, value: value});
+    }
+
+    function deleteDB() {
+        indexedDB.deleteDatabase('paperDB');
+    }
 </script>
 </html>
