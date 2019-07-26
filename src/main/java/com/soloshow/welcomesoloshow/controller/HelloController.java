@@ -1,10 +1,6 @@
 package com.soloshow.welcomesoloshow.controller;
 
-import com.soloshow.welcomesoloshow.aspect.annimation.Test;
-import com.soloshow.welcomesoloshow.test.entity.Userinfo;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,18 +15,18 @@ import java.util.*;
  * @since  2018/12/04
  */
 @RestController
+@Slf4j
 public class HelloController {
 
     @RequestMapping(value = "/list",method = RequestMethod.GET)
     @Scheduled(cron = "0 0 10 * * WED")
     @Async
-    public List<String> getlist() {
-
+    public void getList() {
         List<String> list = new ArrayList<>();
         list.add("aa");
         list.add("aa1");
         list.add("aa2");
-        return list;
+        log.info("集合:"+list);
     }
 
 }

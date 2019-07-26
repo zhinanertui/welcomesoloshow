@@ -1,2 +1,7 @@
 server:
   port: 80
+user:
+  properties:
+    query:
+      name: 邢世伟
+      age: 18
