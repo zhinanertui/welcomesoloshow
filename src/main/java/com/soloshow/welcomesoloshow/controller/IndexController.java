@@ -5,6 +5,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.annotation.MultipartConfig;
 import java.io.File;
@@ -34,8 +35,9 @@ public class IndexController {
     }
 
     @RequestMapping("/uploadHtml")
-    public String uploadHtml() {
-        return "upload";
+    public ModelAndView uploadHtml() {
+//        return "upload";
+        return new ModelAndView("upload");
     }
 
     @RequestMapping("/test")
@@ -81,5 +83,7 @@ public class IndexController {
         System.out.println(名字);
         return 名字;
     }
+
+
 }
 
