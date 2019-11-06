@@ -84,6 +84,9 @@ public class IndexController {
         return 名字;
     }
 
-
+    @GetMapping(value = "test2")
+    public String test2() {
+        return "test2";
+    }
 }
 

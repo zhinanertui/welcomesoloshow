@@ -15,4 +15,6 @@ public class Userinfo {
     private String name;
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date datetime;
+
+    private Integer type;
 }
