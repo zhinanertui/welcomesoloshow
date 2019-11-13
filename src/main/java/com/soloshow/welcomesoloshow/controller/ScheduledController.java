@@ -6,27 +6,25 @@ import org.springframework.scheduling.annotation.Async;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
+import java.util.Date;
+
 /**
- * @author  xsw
- * @since  2018/12/04
+ * @author xsw
+ * @since 2018/12/04
  */
 @Slf4j
 @Component
 public class ScheduledController {
 
-        // @Scheduled(cron = "0 11 17 * * * ")
-        // @Async
-        // public void scheduled(){
-        //     log.info("我想5点11分启动");
-        // }
-        // @Scheduled(fixedRate = 5000)
-        // @Async
-        // public void scheduled1() {
-        //     log.info("=====>>>>>使用fixedRate{}", System.currentTimeMillis());
-        // }
-        // @Scheduled(fixedDelay = 5000)
-        // @Async
-        // public void scheduled2() {
-        //     log.info("=====>>>>>fixedDelay{}",System.currentTimeMillis());
-        // }
+//    @Scheduled(cron = "0/1 * * * * ?")
+    public void task01() throws InterruptedException {
+        System.out.println(Thread.currentThread().getName() + " | task01 " + new Date().toLocaleString());
+        Thread.sleep(2000);
     }
+
+//    @Scheduled(cron = "0/1 * * * * ?")
+    public void task02() {
+        System.out.println(Thread.currentThread().getName() + " | task02 " + new Date().toLocaleString());
+    }
+
+}
