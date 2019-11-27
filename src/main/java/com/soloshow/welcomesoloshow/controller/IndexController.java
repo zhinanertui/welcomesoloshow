@@ -1,5 +1,6 @@
 package com.soloshow.welcomesoloshow.controller;
 
+import com.soloshow.welcomesoloshow.util.AesUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -9,6 +10,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.annotation.MultipartConfig;
+import javax.servlet.http.HttpServletRequest;
 import java.io.File;
 import java.io.IOException;
 import java.util.*;
@@ -84,9 +86,19 @@ public class IndexController {
 
     @PostMapping(value = "test2")
     @ResponseBody
-    public String test2(MultipartFile file) {
-        System.out.println("1");
-        return "test2";
+    public String test2(MultipartFile file,String xuu, HttpServletRequest request) {
+        String hashToken = request.getHeader("hashToken");
+        String xUs = "";
+        try {
+            xUs = AesUtil.decrypt(hashToken, "shboth");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        if (xUs.equals(xuu)) {
+            return "https://windyeel.oss-cn-shanghai.aliyuncs.com/ssfx/1df90ad2-b4b6-44fb-90b4-4f61e9778b71.png";
+        } else {
+            return "";
+        }
     }
 }
 
