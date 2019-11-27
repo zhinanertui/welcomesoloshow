@@ -3,6 +3,7 @@ package com.soloshow.welcomesoloshow.controller;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.util.MultiValueMap;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
@@ -10,10 +11,7 @@ import org.springframework.web.servlet.ModelAndView;
 import javax.servlet.annotation.MultipartConfig;
 import java.io.File;
 import java.io.IOException;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.UUID;
+import java.util.*;
 
 /**
  * @author xsw
@@ -84,8 +82,10 @@ public class IndexController {
         return 名字;
     }
 
-    @GetMapping(value = "test2")
-    public String test2() {
+    @PostMapping(value = "test2")
+    @ResponseBody
+    public String test2(MultipartFile file) {
+        System.out.println("1");
         return "test2";
     }
 }
