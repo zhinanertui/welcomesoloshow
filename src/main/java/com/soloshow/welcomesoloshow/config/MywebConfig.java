@@ -15,7 +15,7 @@ import java.io.File;
 public class MywebConfig implements WebMvcConfigurer {
     @Override
     public void addViewControllers(ViewControllerRegistry registry) {
-        registry.addViewController("/").setViewName("/hello");
+        registry.addViewController("/").setViewName("/blog/index");
     }
 
     @Override

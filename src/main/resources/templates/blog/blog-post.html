@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Bootstrap 4 Blog Template For Developers</title>
+
+    <!-- Meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Blog Template">
+    <meta name="author" content="Xiaoying Riley at 3rd Wave Media">
+    <link rel="shortcut icon" href="../../static/favicon.ico">
+
+    <!-- FontAwesome JS-->
+    <script defer src="https://use.fontawesome.com/releases/v5.7.1/js/all.js"
+            integrity="sha384-eVEQC9zshBn0rFj4+TU78eNA19HMNigMviK/PU/FFjLXqa/GKPgX58rvt5Z8PLs7"
+            crossorigin="anonymous"></script>
+    <!-- Plugin CSS -->
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.14.2/styles/monokai-sublime.min.css">
+    <!-- Theme CSS -->
+    <link id="theme-style" rel="stylesheet" href="assets/css/theme-1.css">
+</head>
+<body>
+<div th:replace="common/bar::#leftBar"></div>
+<div class="main-wrapper">
+    <article class="blog-post px-3 py-5 p-md-5">
+        <div class="container">
+            <header class="blog-post-header">
+                <h2 class="title mb-2">使用acme.sh定期自动更新https证书</h2>
+                <!--                <div class="meta mb-3"><span class="date">Published 3 months ago</span><span-->
+                <!--                        class="time">5 min read</span><span class="comment"><a href="#">4 comments</a></span></div>-->
+            </header>
+
+            <div class="blog-post-body">
+                <!--                <figure class="blog-banner">-->
+                <!--                    <a href="https://made4dev.com"><img class="img-fluid" src="assets/images/blog/blog-post-banner.jpg"-->
+                <!--                                                        alt="image"></a>-->
+                <!--                    <figcaption class="mt-2 text-center image-caption">Image Credit: <a-->
+                <!--                            href="https://made4dev.com?ref=devblog" target="_blank">made4dev.com (Premium Programming-->
+                <!--                        T-shirts)</a></figcaption>-->
+                <!--                </figure>-->
+                <p>搞个Tomcat自动配置证书</p>
+
+                <h3 class="mt-5 mb-3">安装 acme.sh</h3>
+                <pre>
+					<code>
+curl  https://get.acme.sh | sh
+					</code>
+				</pre>
+
+                <h3 class="mt-5 mb-3">生成证书</h3>
+                <pre>
+					<code>
+cd .acme.sh/
+#获取你的阿里云API Key Secret:
+export Ali_Key="********"
+export Ali_Secret="********"
+./acme.sh --issue --dns dns_ali -d example.com -d *.example.com
+#生成到/home/ssl目录下
+./acme.sh --install-cert -d example.com --cert-file /home/ssl/cert.pem --key-file /home/ssl/key.pem --fullchain-file /home/ssl/fullchain.pem --ca-file /home/ssl/ca.pem
+					</code>
+				</pre>
+<!--				<h3 class="mt-5 mb-3">生成证书</h3>-->
+            </div>
+
+
+            <nav class="blog-nav nav nav-justified my-5">
+                <a class="nav-link-prev nav-item nav-link d-none rounded-left" href="index.html">Previous<i
+                        class="arrow-prev fas fa-long-arrow-alt-left"></i></a>
+                <a class="nav-link-next nav-item nav-link d-none rounded-right" href="blog-list.html">Next<i
+                        class="arrow-next fas fa-long-arrow-alt-right"></i></a>
+            </nav>
+        </div><!--//container-->
+    </article>
+</div><!--//main-wrapper-->
+
+
+<!-- Javascript -->
+<script src="assets/plugins/jquery-3.3.1.min.js"></script>
+<script src="assets/plugins/popper.min.js"></script>
+<script src="assets/plugins/bootstrap/js/bootstrap.min.js"></script>
+
+<!-- Page Specific JS -->
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.14.2/highlight.min.js"></script>
+
+<!-- Custom JS -->
+<script src="assets/js/blog.js"></script>
+
+<!-- Style Switcher (REMOVE ON YOUR PRODUCTION SITE) -->
+<script src="assets/js/demo/style-switcher.js"></script>
+
+
+</body>
+</html>
+
