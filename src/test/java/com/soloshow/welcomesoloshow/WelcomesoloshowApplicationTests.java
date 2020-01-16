@@ -28,6 +28,8 @@ public class WelcomesoloshowApplicationTests {
         int length = s.length();
         System.out.println(trim);
         System.out.println(length);
+        int i = 2 ^ 1;
+        System.out.println(i);
     }
 
     @Test
