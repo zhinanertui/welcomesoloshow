@@ -40,19 +40,23 @@ public class IndexController {
         return "test";
     }
 
-    @RequestMapping(value = "/hello.html")
-    public String hello (ModelMap map) {
-        map.put("name", "邢世伟");
-        return "hello";
+    /**
+     * 首页
+     */
+    @GetMapping(value = "/blog.html")
+    public String blog() {
+        return "/blog/index";
     }
+
     /**
      * 关于我
      */
     @GetMapping(value = "/about.html")
-    public String aboutMe(ModelMap map) {
-        map.put("name", "邢世伟");
+    public String aboutMe() {
         return "/blog/about";
     }
+
+
 
     /**
      * 内容

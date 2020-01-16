@@ -12,11 +12,10 @@ import java.io.File;
  * @Date 2018/11/29
  */
 @Configuration
-public class MywebConfig implements WebMvcConfigurer {
+public class MyWebConfig implements WebMvcConfigurer {
     @Override
     public void addViewControllers(ViewControllerRegistry registry) {
         registry.addViewController("/").setViewName("/hello");
-        registry.addViewController("/blog.html").setViewName("/blog/index");
 }
 
     @Override
